@@ -1,8 +1,4 @@
-# preflightnma
-
-<p align="center">
-  ![preflightnma badge](assets/preflightnma-badge.svg)
-</p>
+# preflightnma <img src="assets/preflightnma-badge.png" align="right" height="138"/>
 
 A short README for the preflightnma repository.
 
