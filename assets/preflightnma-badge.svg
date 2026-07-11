@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 520" role="img" aria-labelledby="title desc">
+  <title id="title">preflightnma badge</title>
+  <desc id="desc">Yellow hexagon badge with a small airplane silhouette and the text preflightnma</desc>
+  <!-- Hexagon background -->
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#FFEB3B" />
+      <stop offset="1" stop-color="#F7D600" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(300,260)">
+    <path d="M0,-240 L207,-120 L207,120 L0,240 L-207,120 L-207,-120 Z" fill="url(#g)" stroke="#222" stroke-width="10"/>
+    <!-- Airplane silhouette -->
+    <g transform="translate(-10,-10) scale(1.1)" fill="#111">
+      <path d="M40 0 L120 -16 L136 -6 L172 -28 L188 -24 L160 -2 L204 34 L188 44 L132 18 L104 40 L80 46 L62 40 L40 0 Z" transform="translate(-60,20) rotate(-12)" />
+      <!-- simple wing/line under plane -->
+      <rect x="-140" y="110" width="260" height="8" rx="4" />
+    </g>
+    <!-- Text -->
+    <text x="0" y="-120" text-anchor="middle" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="44" font-weight="700" fill="#111">preflightnma</text>
+  </g>
+</svg>
