@@ -1,6 +1,6 @@
 # preflightnma <img src="assets/preflightnma-badge.png" align="right" height="230"/>
 
-A short README for the preflightnma repository.
+> A short README for the preflightnma repository.
 
 ## About
 
