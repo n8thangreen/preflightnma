@@ -1,7 +1,7 @@
 # preflightnma
 
 <p align="center">
-  <img src="assets/preflightnma-badge.png" alt="preflightnma badge" width="240">
+  ![preflightnma badge](assets/preflightnma-badge.svg)
 </p>
 
 A short README for the preflightnma repository.
@@ -22,7 +22,7 @@ To add the image locally:
 
 - Windows (PowerShell):
 
-  New-Item -ItemType Directory -Path assets -Force; Copy-Item C:\path\to\badge.png assets\preflightnma-badge.png
+  New-Item -ItemType Directory -Path assets -Force; Copy-Item C:\path\to\badge.png assets/preflightnma-badge.png
 
 Or, if you'd like, I can upload the badge image into the repository for you — tell me to proceed and I will add the image to `assets/preflightnma-badge.png`.
 
