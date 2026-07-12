@@ -2,7 +2,7 @@
 
 <br>
 
-> A short README for the preflightnma repository.
+> Preflight checks for network meta-analysis.
 
 ## About
 
