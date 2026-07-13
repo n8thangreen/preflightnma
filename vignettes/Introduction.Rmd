@@ -17,3 +17,17 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(preflightnma)
 ```
+
+We designed the package to consume the exact same "tidy" long-format data structure that multinma uses to define a network (`set_agd_arm()`, `set_agd_contrast()`, `combine_network()`).
+
+The workflow is:
+
+* Format data using `multinma::combine_network()`.
+
+* Run Preflight: Pass the network object to `nma_preflight(network)`.
+
+* Output: A Quarto HTML report containing your structural checks, covariate dot plots.
+
+* Go/No-Go Decision: The analyst reviews the report. If the network is transitive and the priors are sensible, they proceed.
+
+* Run Model using `multinma::nma()`.
