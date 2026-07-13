@@ -1,15 +1,30 @@
 Package: preflightnma
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Preflight Diagnostics for Network Meta-Analysis
+Version: 0.0.1
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+    person("Nathan", "Green", role = c("aut", "cre"), email = "nathan.green@example.com")
+Description: Automated preflight diagnostics and diagnostic plots for Network Meta-Analysis (NMA) using objects from the 'multinma' package. Checks connectivity, transitivity, sparsity, and covariates.
+License: GPL-3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
+Imports: 
+    dplyr,
+    ggplot2,
+    ggraph,
+    igraph,
+    ggrepel,
+    scales,
+    stringr,
+    purrr,
+    tidyr,
+    patchwork,
+    forcats
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0),
+    multinma
 VignetteBuilder: knitr
+Config/testthat/edition: 3
+
