@@ -1,0 +1,5 @@
+
+#
+preflight_connectivity <- function() {
+  
+}
