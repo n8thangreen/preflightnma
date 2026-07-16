@@ -1,0 +1,237 @@
+---
+title: "`r params$title`"
+author: "`r params$author`"
+date: now
+date-format: "MMMM D, YYYY"
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-location: left
+    toc-title: "Table of Contents"
+    number-sections: true
+    embed-resources: true
+    self-contained-math: true
+execute:
+  echo: false
+  warning: false
+  message: false
+params:
+  data_path: ""
+  title: "NMA Preflight Diagnostics Report"
+  author: "PreflightNMA"
+---
+
+```{r}
+#| label: setup
+library(preflightnma)
+library(ggplot2)
+
+# Load preflight data
+preflight <- readRDS(params$data_path)
+sparsity <- preflight$sparsity
+```
+
+<style>
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.metric-card {
+  background: var(--bs-body-bg, #ffffff);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--bs-primary, #0d6efd);
+  margin-bottom: 5px;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: var(--bs-secondary, #6c757d);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-card.status-success .metric-value {
+  color: #198754;
+}
+
+.metric-card.status-warning .metric-value {
+  color: #fd7e14;
+}
+
+.report-section {
+  margin-bottom: 40px;
+}
+
+.card-table-container {
+  max-width: 500px;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+</style>
+
+## Executive Summary {.report-section}
+
+Welcome to the Network Meta-Analysis (NMA) Preflight Diagnostics Report. This document provides automated checks to assess connectivity, transitivity (baseline covariate balance), sparsity, and potential covariate modifiers before fitting your NMA model.
+
+## Network Sparsity {.report-section}
+
+Network sparsity is the proportion of all possible pairwise treatment comparisons that do not have direct evidence from any clinical trial in your network.
+
+<div class="metrics-grid">
+  <div class="metric-card">
+    <div class="metric-value">`r sparsity$n_treatments`</div>
+    <div class="metric-label">Total Treatments</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-value">`r sparsity$n_possible_comparisons`</div>
+    <div class="metric-label">Possible Comparisons</div>
+  </div>
+  <div class="metric-card">
+    <div class="metric-value">`r sparsity$n_observed_comparisons`</div>
+    <div class="metric-label">Observed Comparisons</div>
+  </div>
+  <div class="metric-card status-`r if (sparsity$sparsity > 0.5) "warning" else "success"`">
+    <div class="metric-value">`r sprintf("%.1f%%", sparsity$sparsity * 100)`</div>
+    <div class="metric-label">Network Sparsity</div>
+  </div>
+</div>
+
+```{r}
+#| label: sparsity-message
+#| results: asis
+if (!is.null(sparsity$message)) {
+  cat(paste0("> [!WARNING]\n> ", sparsity$message, "\n\n"))
+}
+```
+
+### Observed Pairwise Comparisons
+
+The table below lists all treatment pairs that are directly compared in at least one multi-arm study.
+
+<div class="card-table-container">
+```{r}
+#| label: sparsity-table
+if (!is.null(sparsity$observed_edges) && nrow(sparsity$observed_edges) > 0) {
+  knitr::kable(
+    sparsity$observed_edges,
+    col.names = c("Treatment A", "Treatment B"),
+    align = "cc",
+    format = "html",
+    table.attr = 'class="table table-hover table-striped"'
+  )
+} else {
+  cat("No observed pairwise comparisons.\n")
+}
+```
+</div>
+
+## Network Connectivity {.report-section}
+
+Connectivity plots illustrate the evidence structure. Nodes represent treatments (sized by total sample size across all arms), and edges represent direct evidence (thickness and transparency correspond to the number of studies comparing the connected treatments).
+
+```{r}
+#| label: connectivity-plots
+#| results: asis
+conn_plots <- preflight$connectivity_plots
+if (length(conn_plots) == 0) {
+  cat("No network connectivity plots were generated.\n")
+} else {
+  cat("::: {.panel-tabset}\n\n")
+  for (plot_name in names(conn_plots)) {
+    # Format the tab title cleanly
+    tab_title <- gsub("_", " ", plot_name)
+    tab_title <- paste0(toupper(substring(tab_title, 1, 1)), substring(tab_title, 2))
+    
+    cat(paste0("### ", tab_title, "\n\n"))
+    print(conn_plots[[plot_name]])
+    cat("\n\n")
+  }
+  cat(":::\n\n")
+}
+```
+
+## Transitivity (Baseline Risk and Patient Characteristics) {.report-section}
+
+Transitivity assumes that we can compare treatments indirectly via a common comparator. This requires data sources to be sufficiently similar in terms of baseline patient characteristics and other study designs. 
+
+Below are the distributions of baseline patient characteristics across treatments to visually assess transitivity.
+
+```{r}
+#| label: transitivity-plots
+#| results: asis
+trans_plots <- preflight$transitivity_plots
+if (length(trans_plots) == 0) {
+  cat("No covariates were assessed or no transitivity balance plots were generated.\n")
+} else {
+  cat("::: {.panel-tabset}\n\n")
+  for (cov_name in names(trans_plots)) {
+    cat(paste0("### ", cov_name, "\n\n"))
+    print(trans_plots[[cov_name]])
+    cat("\n\n")
+  }
+  cat(":::\n\n")
+}
+```
+
+## Covariate Modifier Assessments {.report-section}
+
+Covariate modifiers can introduce inconsistency and heterogeneity if they are unbalanced across treatment comparisons. Here we present exploratory analyses for potential treatment effect modifiers.
+
+```{r}
+#| label: covariate-plots
+#| results: asis
+cov_plots <- preflight$covariate_plots
+if (length(cov_plots) == 0) {
+  cat("No covariate modifier plots were generated.\n")
+} else {
+  for (cov_name in names(cov_plots)) {
+    cat(paste0("### Covariate: ", cov_name, "\n\n"))
+    cat("::: {.panel-tabset}\n\n")
+    
+    plots_for_cov <- cov_plots[[cov_name]]
+    
+    if (!is.null(plots_for_cov$bubble_plot)) {
+      cat("#### Meta-Regression (Bubble Plot)\n\n")
+      print(plots_for_cov$bubble_plot)
+      cat("\n\n")
+    }
+    
+    if (!is.null(plots_for_cov$stratified_forest)) {
+      cat("#### Stratified Forest Plot\n\n")
+      print(plots_for_cov$stratified_forest)
+      cat("\n\n")
+    }
+    
+    if (!is.null(plots_for_cov$study_timeline)) {
+      cat("#### Study Design Timeline\n\n")
+      print(plots_for_cov$study_timeline)
+      cat("\n\n")
+    }
+    
+    cat(":::\n\n")
+  }
+}
+```

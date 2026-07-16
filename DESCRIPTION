@@ -19,7 +19,8 @@ Imports:
     purrr,
     tidyr,
     patchwork,
-    forcats
+    forcats,
+    quarto
 Suggests: 
     knitr,
     rmarkdown,

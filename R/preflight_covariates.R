@@ -67,6 +67,11 @@ plot_covariate_bubble <- function(data,
   plot_data$legend_label <- as.factor(plot_data$legend_label)
   n_tx <- n_distinct(plot_data$legend_label)
   
+  if (!is.null(time_var)) {
+    plot_data$tp_label <- factor(paste("Timepoint", plot_data[[time_var]]), 
+                                 levels = paste("Timepoint", sort(unique(plot_data[[time_var]]))))
+  }
+  
   p <- ggplot(plot_data, aes(x = .data[[covariate]], y = proportion, fill = legend_label, colour = legend_label)) +
     suppressWarnings(geom_smooth(aes(weight = sample_size), method = "lm", formula = y ~ x, se = FALSE, linetype = "dashed", linewidth = 0.8, alpha = 0.6)) +
     geom_point(aes(size = sample_size), shape = 21, colour = "white", alpha = 0.75)
@@ -98,8 +103,6 @@ plot_covariate_bubble <- function(data,
           plot.subtitle = element_text(colour = "grey40", size = 9), panel.grid.minor = element_blank())
   
   if (!is.null(time_var)) {
-    plot_data$tp_label <- factor(paste("Timepoint", plot_data[[time_var]]), 
-                                 levels = paste("Timepoint", sort(unique(plot_data[[time_var]]))))
     p <- p + facet_wrap(~ tp_label)
   }
   
