@@ -6,7 +6,7 @@
 
 ## About
 
-There is a significant gap in the literature regarding practical, visualization-heavy workflows for analysts.
+There is a significant gap in the literature regarding practical, visualization-heavy workflows for analysts performing preliminary NMA checks, in the spirit of empirical data analysis (EDA) for NMA.
 
 Most existing literature focuses on the theoretical requirements for feasibility (e.g., assessing transitivity, similarity, and consistency) rather than the applied data science and visualization pipeline needed to make those assessments.
 
