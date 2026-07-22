@@ -1,0 +1,53 @@
+url: https://n8thangreen.github.io/preflightnma
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+home:
+  title: Preflight Diagnostics for Network Meta-Analysis
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+    right: [github]
+  components:
+    articles:
+      text: Articles
+      menu:
+        - text: Introduction to preflightnma
+          href: articles/Introduction.html
+
+reference:
+  - title: Main Workflow & Diagnostics
+    desc: Functions for orchestrating network meta-analysis preflight diagnostics and HTML reporting.
+    contents:
+      - nma_preflight
+      - nma_preflight_report
+
+  - title: Diagnostic Checks
+    desc: Functions assessing individual dimensions of NMA feasibility.
+    contents:
+      - preflight_connectivity
+      - preflight_covariates
+      - preflight_sparsity
+      - preflight_transitivity
+
+  - title: Diagnostic Visualizations
+    desc: Functions for specialized NMA plots and covariate balance visualisations.
+    contents:
+      - plot_covariate_bubble
+      - plot_stratified_forest
+      - plot_study_timeline
+
+  - title: Data Preparation & Utilities
+    desc: Helper functions for processing network data structures.
+    contents:
+      - build_network
+      - extract_network_data
+
+  - title: Internal Methods
+    desc: S3 methods and internal printing functions.
+    contents:
+      - print.nma_preflight
+      - print.preflight_sparsity

@@ -1,4 +1,4 @@
-# preflightnma <img src="assets/preflightnma-badge.png" align="right" height="230"/>
+# preflightnma <img src="man/figures/logo.png" align="right" height="230" alt="preflightnma package logo" />
 
 <br>
 

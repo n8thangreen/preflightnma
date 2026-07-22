@@ -5,6 +5,8 @@ Authors@R:
     person("Nathan", "Green", role = c("aut", "cre"), email = "nathan.green@example.com")
 Description: Automated preflight diagnostics and diagnostic plots for Network Meta-Analysis (NMA) using objects from the 'multinma' package. Checks connectivity, transitivity, sparsity, and covariates.
 License: GPL-3
+URL: https://n8thangreen.github.io/preflightnma
+BugReports: https://github.com/n8thangreen/preflightnma/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0

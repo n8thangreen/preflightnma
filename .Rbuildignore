@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^assets$
 ^plots$
+^_pkgdown\.yml$
+^docs$
+^\.github$
