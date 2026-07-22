@@ -35,3 +35,16 @@ Add guidelines for contributing here.
 ## License
 
 Add your license information here.
+
+## References
+
+* **Dias, S., Welton, N. J., Sutton, A. J., & Ades, A. E. (2011).** *NICE DSU Technical Support Document 2: A Generalised Linear Modelling Framework for Pairwise and Network Meta-Analysis of Randomised Controlled Trials.* National Institute for Health and Care Excellence (NICE).
+* **Dias, S., Welton, N. J., Sutton, A. J., Caldwell, D. M., Lu, G., & Ades, A. E. (2011).** *NICE DSU Technical Support Document 4: Inconsistency in Networks of Evidence Based on Randomised Controlled Trials.* National Institute for Health and Care Excellence (NICE).
+* **Ades, A. E., Caldwell, D. M., Reken, S., et al. (2012).** *Evidence Synthesis of Treatment Efficacy in Decision Making: A Reviewer's Checklist [Internet]. NICE DSU Technical Support Document No. 7.* London: National Institute for Health and Care Excellence (NICE).
+* **Jansen, J. P., Fleurence, R., Devine, B., Itzler, R., Barrett, A., Hawkins, N., ... & Altman, D. G. (2011).** Interpreting Indirect Treatment Comparisons and Network Meta-Analysis for Health-Care Decision Making: Report of the ISPOR Task Force on Indirect Treatment Comparisons Good Research Practices: Part 1. *Value in Health*, 14(4), 417-428.
+* **Hoaglin, D. C., Hawkins, N., Jansen, J. P., Scott, D. A., Itzler, R., Cappelleri, J. C., ... & Barrett, A. (2011).** Conducting indirect-treatment-comparison and network-meta-analysis studies: report of the ISPOR Task Force on Indirect Treatment Comparisons Good Research Practices: part 2. *Value in Health*, 14(4), 429-437.
+* **Cope, S., Jansen, J. P., Stevens, J. W., & Schmid, C. H. (2014).** A process for assessing the feasibility of a network meta-analysis: a case study of everolimus in combination with hormonal therapy versus chemotherapy for advanced breast cancer. *BMC Medicine*, 12, 93.
+* **Donegan, S., Williamson, P., D'Alessandro, U., & Tudur Smith, C. (2013).** Assessing key assumptions of network meta-analysis: a review of methods. *Research Synthesis Methods*, 4(4), 291-323.
+* **Chaimani, A., Higgins, J. P., Mavridis, D., Spyridonos, P., & Salanti, G. (2013).** Graphical tools for network meta-analysis in STATA. *PLoS One*, 8(10), e76654.
+* **Cipriani, A., Higgins, J. P., Geddes, J. R., & Salanti, G. (2013).** Conceptual and technical challenges in network meta-analysis. *Annals of Internal Medicine*, 159(2), 130-137.
+* **Salanti, G. (2012).** Indirect and mixed-treatment comparison, network, or multiple-treatments meta-analysis: many names, many benefits, many concerns for the next generation evidence synthesis tool. *Research Synthesis Methods*, 3(2), 80-97.
